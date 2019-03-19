@@ -35,7 +35,7 @@ var colors = {
   .attr('class', 'main')  
 
 
- d3.csv("https://ndshen.github.io/test/analysisword.csv", scatter);
+ d3.csv("https://ndshen.github.io/MA_JS/analysisword.csv", scatter);
   function scatter(data){
     
     var x = d3.scale.linear()
