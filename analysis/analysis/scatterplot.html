@@ -1,0 +1,38 @@
+   <!DOCTYPE html> 
+    <html>
+      <head>
+        <title>The d3 test</title>
+<style>
+.chart {
+
+}
+
+.main text {
+    font: 10px sans-serif;	
+}
+
+.axis line, .axis path {
+    shape-rendering: crispEdges;
+    stroke: black;
+    fill: none;
+}
+
+circle {
+    fill: steelblue;
+}
+
+</style>
+        <script type="text/javascript" src="http://mbostock.github.com/d3/d3.v2.js"></script>
+        <link rel=stylesheet type="text/css" href="scatcss.css">
+      </head>
+      <body>
+        <div class='content'>
+        	<div id="scatTooltip" class="tooltip">
+        		
+				<p><span class="value">value</span></p>
+			</div>
+          <!-- /the chart goes here -->
+        </div>
+        <script type="text/javascript" src="scatterchart.js"></script>
+      </body>
+    </html>

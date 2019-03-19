@@ -1,0 +1,512 @@
+imageurl=paste0(subpath,pictureornot)
+imageURL[i]=imageurl
+}
+englishName=vector(length=n)
+imageURL=vector(length=n)
+subpath="http://www.truemovie.com/"
+for(i in 1:n){
+Erroresult<- tryCatch({
+engNamePath=paste0(subpath, movieUrl[i])
+temp=getURL(engNamePath ,encoding="utf-8")
+xmldoc=htmlParse(temp, encoding="utf-8")
+}, warning = function(war) {
+print(paste("MY_WARNING:  ", movieTitle[i]))
+}, error = function(err) {
+print(paste("MY_ERROR:  ", movieTitle[i]))
+next
+}, finally = {
+print(paste("End Try&Catch", movieTitle[i]))
+})
+whichName=NULL
+for(j in 1:5){
+xpath1="//td/p["
+xpath2=as.character(j)
+xpath3="]"
+xpath4=paste0(xpath1, xpath2, xpath3)
+whichName=xpathSApply(xmldoc, xpath4, xmlValue)
+test=substring(whichName, first=1, last=8)
+if("-^au|W!G"==test){
+break
+}
+else if(j==5){
+whichName="Error"
+}
+}
+englishName[i]   <- whichName
+englishName[i]   <- gsub("\n", "", englishName[i])
+englishName[i]   <- gsub("\t", "", englishName[i])
+englishName[i]   <- substr(englishName[i], 9, nchar(englishName[i]))
+nameLength=nchar(englishName[i])
+o=strsplit(englishName[i],"")[[1]]
+k2=0
+for(k in nameLength:1){
+if(o[k]!=" "){
+break
+}
+k2=k2+1
+}
+englishName[i]=substring(englishName[i], 1, nameLength-k2)
+pictureornot=0
+for(j in 9:15){
+xpath1="//td/p["
+xpath2=as.character(j)
+xpath3="]//a[1]/img/@src"
+xpath4=paste0(xpath1, xpath2, xpath3)
+pictureornot=xpathSApply(xmldoc, xpath4, xmlValue)
+if(!is.null(pictureornot)){
+break
+}
+else if(j==15){
+pictureornot=0
+}
+}
+imageurl=paste0(subpath,pictureornot)
+imageURL[i]=imageurl
+}
+library(XML)
+library(RCurl)
+library(httr)
+library(XML)
+library(RCurl)
+library(httr)
+Sys.setlocale(category = "LC_ALL", locale = "cht")
+#==========================================================
+path="https://ndshen.github.io/test/movieList2.html"
+temp=getURL(path ,encoding="utf-8")
+xmldoc=htmlParse(temp, encoding="utf-8")
+movieTitle   <- xpathSApply(xmldoc, "//div//td//a", xmlValue)
+movieTitle   <- gsub("\n", "", movieTitle)
+movieTitle   <- gsub("\t", "", movieTitle)
+movieUrl     <- xpathSApply(xmldoc, "//div//td//@href")
+n=length(movieTitle)
+englishName=vector(length=n)
+imageURL=vector(length=n)
+subpath="http://www.truemovie.com/"
+for(i in 1:n){
+Erroresult<- tryCatch({
+engNamePath=paste0(subpath, movieUrl[i])
+temp=getURL(engNamePath ,encoding="utf-8")
+xmldoc=htmlParse(temp, encoding="utf-8")
+}, warning = function(war) {
+print(paste("MY_WARNING:  ", movieTitle[i]))
+}, error = function(err) {
+print(paste("MY_ERROR:  ", movieTitle[i]))
+next
+}, finally = {
+print(paste("End Try&Catch", movieTitle[i]))
+})
+whichName=NULL
+for(j in 1:5){
+xpath1="//td/p["
+xpath2=as.character(j)
+xpath3="]"
+xpath4=paste0(xpath1, xpath2, xpath3)
+whichName=xpathSApply(xmldoc, xpath4, xmlValue)
+test=substring(whichName, first=1, last=8)
+if("-^au|W!G"==test){
+break
+}
+else if(j==5){
+whichName="Error"
+}
+}
+englishName[i]   <- whichName
+englishName[i]   <- gsub("\n", "", englishName[i])
+englishName[i]   <- gsub("\t", "", englishName[i])
+englishName[i]   <- substr(englishName[i], 9, nchar(englishName[i]))
+nameLength=nchar(englishName[i])
+o=strsplit(englishName[i],"")[[1]]
+k2=0
+for(k in nameLength:1){
+if(o[k]!=" "){
+break
+}
+k2=k2+1
+}
+englishName[i]=substring(englishName[i], 1, nameLength-k2)
+pictureornot=0
+for(j in 9:15){
+xpath1="//td/p["
+xpath2=as.character(j)
+xpath3="]//a[1]/img/@src"
+xpath4=paste0(xpath1, xpath2, xpath3)
+pictureornot=xpathSApply(xmldoc, xpath4, xmlValue)
+if(!is.null(pictureornot)){
+break
+}
+else if(j==15){
+pictureornot=0
+}
+}
+imageurl=paste0(subpath,pictureornot)
+imageURL[i]=imageurl
+}
+englishName=vector(length=n)
+imageURL=vector(length=n)
+subpath="http://www.truemovie.com/"
+for(i in 1:n){
+Erroresult<- tryCatch({
+engNamePath=paste0(subpath, movieUrl[i])
+temp=getURL(engNamePath ,encoding="utf-8")
+xmldoc=htmlParse(temp, encoding="utf-8")
+}, warning = function(war) {
+print(paste("MY_WARNING:  ", movieTitle[i]))
+}, error = function(err) {
+print(paste("MY_ERROR:  ", movieTitle[i]))
+next
+}, finally = {
+print(paste("End Try&Catch", movieTitle[i]))
+})
+whichName=NULL
+for(j in 1:5){
+xpath1="//td/p["
+xpath2=as.character(j)
+xpath3="]"
+xpath4=paste0(xpath1, xpath2, xpath3)
+whichName=xpathSApply(xmldoc, xpath4, xmlValue)
+test=substring(whichName, first=1, last=8)
+if("-^au|W!G"==test){
+break
+}
+else if(j==5){
+whichName="Error"
+}
+}
+englishName[i]   <- whichName
+englishName[i]   <- gsub("\n", "", englishName[i])
+englishName[i]   <- gsub("\t", "", englishName[i])
+englishName[i]   <- substr(englishName[i], 9, nchar(englishName[i]))
+nameLength=nchar(englishName[i])
+o=strsplit(englishName[i],"")[[1]]
+k2=0
+for(k in nameLength:1){
+if(o[k]!=" "){
+break
+}
+k2=k2+1
+}
+englishName[i]=substring(englishName[i], 1, nameLength-k2)
+pictureornot=0
+for(j in 9:15){
+xpath1="//td/p["
+xpath2=as.character(j)
+xpath3="]//a[1]/img/@src"
+xpath4=paste0(xpath1, xpath2, xpath3)
+pictureornot=xpathSApply(xmldoc, xpath4)
+if(!is.null(pictureornot)){
+break
+}
+else if(j==15){
+pictureornot=0
+}
+}
+imageurl=paste0(subpath,pictureornot)
+imageURL[i]=imageurl
+}
+imageURL
+englishName=vector(length=n)
+imageURL=vector(length=n)
+subpath="http://www.truemovie.com/"
+for(i in 43:n){
+Erroresult<- tryCatch({
+engNamePath=paste0(subpath, movieUrl[i])
+temp=getURL(engNamePath ,encoding="utf-8")
+xmldoc=htmlParse(temp, encoding="utf-8")
+}, warning = function(war) {
+print(paste("MY_WARNING:  ", movieTitle[i]))
+}, error = function(err) {
+print(paste("MY_ERROR:  ", movieTitle[i]))
+next
+}, finally = {
+print(paste("End Try&Catch", movieTitle[i]))
+})
+whichName=NULL
+for(j in 1:5){
+xpath1="//td/p["
+xpath2=as.character(j)
+xpath3="]"
+xpath4=paste0(xpath1, xpath2, xpath3)
+whichName=xpathSApply(xmldoc, xpath4, xmlValue)
+test=substring(whichName, first=1, last=8)
+if("-^au|W!G"==test){
+break
+}
+else if(j==5){
+whichName="Error"
+}
+}
+englishName[i]   <- whichName
+englishName[i]   <- gsub("\n", "", englishName[i])
+englishName[i]   <- gsub("\t", "", englishName[i])
+englishName[i]   <- substr(englishName[i], 9, nchar(englishName[i]))
+nameLength=nchar(englishName[i])
+o=strsplit(englishName[i],"")[[1]]
+k2=0
+for(k in nameLength:1){
+if(o[k]!=" "){
+break
+}
+k2=k2+1
+}
+englishName[i]=substring(englishName[i], 1, nameLength-k2)
+pictureornot=0
+for(j in 9:15){
+xpath1="//td/p["
+xpath2=as.character(j)
+xpath3="]//a[1]/img/@src"
+xpath4=paste0(xpath1, xpath2, xpath3)
+pictureornot=xpathSApply(xmldoc, xpath4)
+if(!is.null(pictureornot)){
+break
+}
+else if(j==15){
+pictureornot=0
+}
+}
+imageurl=paste0(subpath,pictureornot)
+imageURL[i]=imageurl
+}
+imageURL
+for(i in 316:n){
+Erroresult<- tryCatch({
+engNamePath=paste0(subpath, movieUrl[i])
+temp=getURL(engNamePath ,encoding="utf-8")
+xmldoc=htmlParse(temp, encoding="utf-8")
+}, warning = function(war) {
+print(paste("MY_WARNING:  ", movieTitle[i]))
+}, error = function(err) {
+print(paste("MY_ERROR:  ", movieTitle[i]))
+next
+}, finally = {
+print(paste("End Try&Catch", movieTitle[i]))
+})
+whichName=NULL
+for(j in 1:5){
+xpath1="//td/p["
+xpath2=as.character(j)
+xpath3="]"
+xpath4=paste0(xpath1, xpath2, xpath3)
+whichName=xpathSApply(xmldoc, xpath4, xmlValue)
+test=substring(whichName, first=1, last=8)
+if("-^au|W!G"==test){
+break
+}
+else if(j==5){
+whichName="Error"
+}
+}
+englishName[i]   <- whichName
+englishName[i]   <- gsub("\n", "", englishName[i])
+englishName[i]   <- gsub("\t", "", englishName[i])
+englishName[i]   <- substr(englishName[i], 9, nchar(englishName[i]))
+nameLength=nchar(englishName[i])
+o=strsplit(englishName[i],"")[[1]]
+k2=0
+for(k in nameLength:1){
+if(o[k]!=" "){
+break
+}
+k2=k2+1
+}
+englishName[i]=substring(englishName[i], 1, nameLength-k2)
+pictureornot=0
+for(j in 9:15){
+xpath1="//td/p["
+xpath2=as.character(j)
+xpath3="]//a[1]/img/@src"
+xpath4=paste0(xpath1, xpath2, xpath3)
+pictureornot=xpathSApply(xmldoc, xpath4)
+if(!is.null(pictureornot)){
+break
+}
+else if(j==15){
+pictureornot=0
+}
+}
+imageurl=paste0(subpath,pictureornot)
+imageURL[i]=imageurl
+}
+imageURL
+substr(imageURL[1], 1, 26)
+substr(imageURL[43], 1, 26)
+substr(imageURL[43], 1, 24)
+for(i in 1:41){
+Erroresult<- tryCatch({
+engNamePath=paste0(subpath, movieUrl[i])
+temp=getURL(engNamePath ,encoding="utf-8")
+xmldoc=htmlParse(temp, encoding="utf-8")
+}, warning = function(war) {
+print(paste("MY_WARNING:  ", movieTitle[i]))
+}, error = function(err) {
+print(paste("MY_ERROR:  ", movieTitle[i]))
+next
+}, finally = {
+print(paste("End Try&Catch", movieTitle[i]))
+})
+whichName=NULL
+for(j in 1:5){
+xpath1="//td/p["
+xpath2=as.character(j)
+xpath3="]"
+xpath4=paste0(xpath1, xpath2, xpath3)
+whichName=xpathSApply(xmldoc, xpath4, xmlValue)
+test=substring(whichName, first=1, last=8)
+if("-^au|W!G"==test){
+break
+}
+else if(j==5){
+whichName="Error"
+}
+}
+englishName[i]   <- whichName
+englishName[i]   <- gsub("\n", "", englishName[i])
+englishName[i]   <- gsub("\t", "", englishName[i])
+englishName[i]   <- substr(englishName[i], 9, nchar(englishName[i]))
+nameLength=nchar(englishName[i])
+o=strsplit(englishName[i],"")[[1]]
+k2=0
+for(k in nameLength:1){
+if(o[k]!=" "){
+break
+}
+k2=k2+1
+}
+englishName[i]=substring(englishName[i], 1, nameLength-k2)
+pictureornot=0
+for(j in 9:15){
+xpath1="//td/p["
+xpath2=as.character(j)
+xpath3="]//a[1]/img/@src"
+xpath4=paste0(xpath1, xpath2, xpath3)
+pictureornot=xpathSApply(xmldoc, xpath4)
+if(!is.null(pictureornot)){
+break
+}
+else if(j==15){
+pictureornot=0
+}
+}
+imageurl=paste0(subpath,pictureornot)
+imageURL[i]=imageurl
+}
+t3=nchar(imageURL[1])
+t1=substr(imageURL[1],1,24)
+t2=substr(imageURL[1],28,t3)
+paste0(t1,t2)
+for(i in 1:n){
+t3=nchar(imageURL[i])
+t1=substr(imageURL[i],1,24)
+t2=substr(imageURL[i],28,t3)
+imageURL[i]=paste0(t1,t2)
+}
+imageURL
+img=c(movieTitle, imageURL)
+img
+img=rbind(movieTitle, imageURL)
+img
+View(img)
+setwd("C:\\Users\\User\\Desktop\\大二上\\test\\project")
+movieList=read.csv("movieList5.0.csv")
+movieList[1]=NULL
+rating=movieList[,3]
+englishName=movieList[,2]
+movieTitle=movieList[,1]
+img=rbind(movieTitle, imageURL)
+img
+View(img)
+setwd("C:\\Users\\User\\Desktop\\大二上\\test\\project")
+movieList=read.csv("movieList4.0.csv")
+movieList[1]=NULL
+rating=movieList[,3]
+englishName=movieList[,2]
+movieTitle=movieList[,1]
+img=rbind(movieTitle, imageURL)
+img
+movieTitle
+movieTitle[1]
+movieTitle[[1]]
+movieTitle
+movieList$movieTitle=as.character(movieList$movieTitle)
+movieList$englishName=as.character(movieList$englishName)
+ram=movieList[1,2]
+for(i in 2:n){
+if(movieList[i,2]==ram){
+newName<-paste0(movieList[i-1, 1], movieList[i,1])
+levels(movieList[1])<-c(levels(movieList[1]), newName)
+movieList[i-1 ,1]=newName
+movieList=movieList[-i,]
+i=i-1
+}
+ram=movieList[i,2]
+}
+write.table(movieList, file = "C:/Users/User/Desktop/大二上/test/project/movieList4.0.csv")
+movieList=data.frame(movieTitle, englishName, rating)
+movieList$movieTitle=as.character(movieList$movieTitle)
+movieList$englishName=as.character(movieList$englishName)
+ram=movieList[1,2]
+for(i in 2:n){
+if(movieList[i,2]==ram){
+newName<-paste0(movieList[i-1, 1], movieList[i,1])
+levels(movieList[1])<-c(levels(movieList[1]), newName)
+movieList[i-1 ,1]=newName
+movieList=movieList[-i,]
+i=i-1
+}
+ram=movieList[i,2]
+}
+setwd("C:\\Users\\User\\Desktop\\大二上\\test\\project")
+movieList=read.csv("movieList5.0.csv")
+movieList[1]=NULL
+rating=movieList[,3]
+englishName=movieList[,2]
+movieTitle=movieList[,1]
+img=rbind(movieTitle, imageURL)
+View(img)
+movieTitle
+length(movieTitle)
+movieTitle[1]
+movieTitle[[1]]
+class(movieTitle)
+movieTitle=as.vector(movieTitle)
+img=rbind(movieTitle, imageURL)
+View(img)
+movieTitle
+img=as.data.frame(img)
+write.table(img, file = "C:/Users/User/Desktop/大二上/test/project/img.csv")
+englishName
+setwd("C:\\Users\\User\\Desktop\\大二上\\test\\project")
+movieList=read.csv("movieList2.0.csv")
+movieList[1]=NULL
+rating=movieList[,3]
+englishName=movieList[,2]
+movieTitle=movieList[,1]
+movieList=data.frame(movieTitle, englishName, rating, imageURL)
+movieList$movieTitle=as.character(movieList$movieTitle)
+movieList$englishName=as.character(movieList$englishName)
+ram=movieList[1,2]
+for(i in 2:n){
+if(movieList[i,2]==ram){
+newName<-paste0(movieList[i-1, 1], movieList[i,1])
+levels(movieList[1])<-c(levels(movieList[1]), newName)
+movieList[i-1 ,1]=newName
+movieList=movieList[-i,]
+i=i-1
+}
+ram=movieList[i,2]
+}
+movieList
+View(movieList)
+movieList[,1]
+View(movieList)
+img=rbind(movieList[,1], movieList[,4])
+View(img)
+View(movieList)
+movieTitle=as.vector(movieList[,1])
+imageURL=as.vector(movieList[,4])
+img=rbind(movieTitle, imageURL)
+img=as.data.frame(img)
+write.table(img, file = "C:/Users/User/Desktop/大二上/test/project/img.csv")
+img=rbind(movieTitle, imageURL)
+img=as.data.frame(img)
+View(img)
+write.table(img, file = "C:/Users/User/Desktop/大二上/test/project/img3.csv")
